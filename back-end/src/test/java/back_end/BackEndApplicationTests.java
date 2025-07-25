@@ -3,9 +3,8 @@ package back_end;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import RecipeCounter.Application;
 
-@SpringBootTest(classes = Application.class)
+@SpringBootTest
 class BackEndApplicationTests {
 
 	@Test

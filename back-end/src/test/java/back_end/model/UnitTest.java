@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.withPrecision;
 
-import RecipeCounter.model.Unit;
-
 public class UnitTest {
     @Test
 	void convertTeaspoonToTablespoon() {

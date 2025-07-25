@@ -1,7 +1,7 @@
-package RecipeCounter.model;
+package back_end.model;
 
 public enum Unit {
-    TABLESPOON () {
+    TABLESPOON ("tablespoon") {
         @Override
         public Unit convertToTeaspoon() {
             Unit newUnit = Unit.TEASPOON;
@@ -18,7 +18,7 @@ public enum Unit {
             return newUnit;
         }
     },
-    TEASPOON () {
+    TEASPOON ("teaspoon") {
         @Override
         public Unit convertToTablespoon() {
             Unit newUnit = Unit.TABLESPOON;
@@ -35,7 +35,7 @@ public enum Unit {
             return newUnit;
         }
     },
-    CUP () {
+    CUP ("cup") {
         @Override
         public Unit convertToTablespoon() {
             Unit newUnit = Unit.TABLESPOON;
@@ -54,6 +54,7 @@ public enum Unit {
     };
 
     private double amount;
+    private String name;
 
     public double getAmount() {
         return this.amount;
@@ -75,6 +76,10 @@ public enum Unit {
         return this;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void reduceBy(double factor) {
         this.amount = this.amount / factor;
     }
@@ -83,5 +88,7 @@ public enum Unit {
         this.amount = this.amount * factor;
     }
 
-    Unit () {}
+    Unit (String name) {
+        this.name = name.toUpperCase();
+    }
 }
