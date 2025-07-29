@@ -76,6 +76,19 @@ public enum Unit {
         return this;
     }
 
+    public Unit convertTo(String type) {
+        switch (type.toUpperCase()) {
+            case "TABLESPOON":
+                return this.convertToTablespoon();
+            case "TEASPOON":
+                return this.convertToTeaspoon();
+            case "CUP":
+                return this.convertToCup();
+            default:
+                throw new IllegalArgumentException("Unknown unit type: " + type);
+        }
+    }
+
     public String getName() {
         return this.name;
     }
