@@ -19,6 +19,17 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public Recipe(String name, String description, String instructions, String notes, String imageUrl, int servings, Double totalCalories, Map<Ingredient, Unit> ingredients) {
+        this.name = name.toLowerCase();
+        this.description = description;
+        this.instructions = instructions;
+        this.notes = notes;
+        this.imageUrl = imageUrl;
+        this.servings = servings;
+        this.totalCalories = totalCalories;
+        this.ingredients = ingredients;
+    }
+
     public String getName() {
         return name;
     }
@@ -70,4 +81,15 @@ public class Recipe {
         return totalCalories;
     }
 
+    /*
+     * Returns a string representation of the recipe in CSV format.
+     */
+    public String toStringCSVFormat() {
+        // Format: name,description,instructions,notes,imageUrl,servings,total calories,ingredients
+        return String.format("%s,\"%s\",\"%s\",\"%s\",%s,%d,%.2f,\"%s\"%n",
+            name, description, instructions, notes, imageUrl, servings, totalCalories,
+            ingredients.entrySet().stream()
+                .map(entry -> String.format("%s;%s", entry.getKey().getName(), entry.getValue().toStringCSVFormat()))
+                .reduce((a, b) -> a + "," + b).orElse(""));
+    }
 }

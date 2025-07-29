@@ -104,4 +104,8 @@ public enum Unit {
     Unit (String name) {
         this.name = name.toUpperCase();
     }
+
+    public String toStringCSVFormat() {
+        return String.format("%.2f%s", this.amount, this.name.toLowerCase());
+    }
 }

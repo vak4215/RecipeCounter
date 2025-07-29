@@ -56,4 +56,27 @@ public class RecipeTest {
 
         assertThat(testRecipe.calculateTotalCalories()).isEqualTo(440);
 	}
+
+    @Test
+    void testToStringCSVFormat() {
+        String expectedString = "flour,\"just plain flour\",\"1. dummy recipe\",\"\",,1,110.00,\"all-purpose flour;1.00cup\"\n";
+
+        IngredientService ingredientService = new IngredientService();
+        Ingredient testIngredient = ingredientService.getIngredientByName("all-purpose flour");
+        Unit quantity = Unit.CUP;
+        quantity.setAmount(1);
+        
+        Recipe testRecipe = new Recipe(
+            "flour",
+            "just plain flour",
+            "1. dummy recipe",
+            "",
+            "",
+            1,
+            110.0,
+            Map.of(testIngredient, quantity)
+        );
+
+        assertThat(testRecipe.toStringCSVFormat()).isEqualTo(expectedString);
+    }
 }
